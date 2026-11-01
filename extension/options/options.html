@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Save to Google Sheets</title>
+  <link rel="stylesheet" href="../styles/app.css">
+  <script type="module" src="options.js"></script>
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">SAVE TO SHEETS</p>
+        <h1>Settings</h1>
+      </div>
+      <div class="topbar-actions">
+        <label class="theme-switch"><input id="theme-toggle" type="checkbox"><span>Dark</span></label>
+        <button id="save-button" class="primary">Save settings</button>
+      </div>
+    </header>
+
+    <div id="global-error" class="alert" role="alert" hidden></div>
+    <div id="global-status" class="notice" role="status" hidden></div>
+
+    <section class="card">
+      <h2>Google Sheets</h2>
+      <label class="field"><span>Mode</span>
+        <select id="mode"><option value="demo">Demo (saved on this device)</option><option value="live">Live (Google Sheet)</option></select>
+      </label>
+      <div id="live-panel" hidden>
+        <p class="muted">To use Live, set up a Google OAuth client and the Sheets API. Follow the steps in the guide.</p>
+        <a href="https://console.cloud.google.com/" target="_blank" rel="noreferrer">Open Google Cloud Console</a>
+        <button id="connect-google" type="button">Connect Google account</button>
+        <div id="oauth-status" class="notice" role="status"></div>
+      </div>
+      <p class="help">Demo mode is local only. Live mode appends rows to the selected spreadsheet and tab.</p>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><div><h2>Sheets</h2><p class="muted">Add more than one destination, rename them and choose a default.</p></div>
+        <button id="add-sheet" type="button">Add sheet</button>
+      </div>
+      <div id="sheets-list" class="sheets-list"></div>
+      <template id="sheet-template">
+        <article class="sheet-card">
+          <header class="sheet-heading"><h3 class="sheet-name"></h3><button class="remove-sheet danger" type="button">Remove</button></header>
+          <div class="sheet-grid">
+            <label class="field"><span>Name</span><input class="sheet-name-input" maxlength="60" required></label>
+            <label class="field"><span>Google Sheet link or ID</span><input class="sheet-id" placeholder="Paste spreadsheet URL or ID" inputmode="url"></label>
+            <label class="field"><span>Tab name</span><input class="sheet-tab" maxlength="100" required></label>
+            <label class="field"><span>Columns (comma-separated)</span><input class="sheet-columns" placeholder="Timestamp, Source URL, Text, Note" maxlength="500"></label>
+          </div>
+          <label class="radio-row"><input class="sheet-default" type="radio" name="default-sheet"> Make default</label>
+        </article>
+      </template>
+    </section>
+
+    <section class="card">
+      <h2>Demo data</h2>
+      <p class="muted">Demo rows stay on this device, separately for each sheet. They are not sent to Google.</p>
+      <div class="button-row"><button id="export-demo" type="button">Export CSV</button><button id="clear-demo" class="danger" type="button">Clear demo rows</button></div>
+      <div id="demo-preview" class="preview-list"></div>
+    </section>
+
+    <footer><span>Save to Google Sheets · Version 1.1.0</span></footer>
+  </main>
+</body>
+</html>
