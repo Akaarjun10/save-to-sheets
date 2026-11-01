@@ -1,0 +1,7 @@
+{
+  "name": "save-to-sheets-extension-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {"test":"node run-tests.mjs"},
+  "devDependencies": {"puppeteer":"^24.15.0"}
+}
