@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Save to Google Sheets",
+  "short_name": "Save to Sheets",
+  "version": "1.1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq7v3IVl32Yv5duHH872U5q+8G40UAJbLetkrBvKCpmlQBJGLoPsa/Yij32leSfkvvHkfUcNJZy0CDNxP6k1407Z7iNXIdRckNaKldl5ZgfGQN/VI/d8uL0aLG45Lc8pb7Su9Q4Xnqn08kIia3VlJPyb4pQU1j3Ma8fdTGWWMA2tYpHjD+bVWBlrCua+NAZ+gCTpGP1V/FiFZjZdJds0QNwgIkri9i077HZlyFtehuwrnnLQZJGgsRDRqkKfe/x7aKxFnNtrxDPljl1gkJAzpVcZbqLoU99zGT8bwQhh86Wg6HCqd1mgyradupPfrSNuI/leMfamXVESNWJyjiHvMDwIDAQAB",
+  "description": "Save selected text, links, images and pages to Google Sheets. Keyboard shortcut, several sheets, quick entry form. Works offline in demo mode.",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Save to Google Sheets",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "identity",
+    "scripting",
+    "storage"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"
+  },
+  "host_permissions": [
+    "https://sheets.googleapis.com/*"
+  ],
+  "oauth2": {
+    "client_id": "",
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets"
+    ]
+  },
+  "commands": {
+    "save-selection": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "Alt+Shift+S"
+      },
+      "description": "Save the selected text to your default sheet"
+    }
+  }
+}
